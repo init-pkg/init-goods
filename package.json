@@ -7,9 +7,6 @@
     "type": "git",
     "url": "git+https://github.com/init-pkg/jsonparse-ts.git"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
     "./classes": {
@@ -88,11 +85,11 @@
     "test": "tests"
   },
   "bugs": {
-    "url": "https://github.com/init-pkg/template/issues"
+    "url": "https://github.com/init-pkg/init-goods/issues"
   },
   "peerDependencies": {
-    "next": "^15.3.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "next": ">=15.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   }
 }
