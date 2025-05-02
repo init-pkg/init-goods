@@ -1,0 +1,79 @@
+{
+  "name": "@init-kz/goods",
+  "version": "1.0.5",
+  "description": "Library from init.kz",
+  "homepage": "https://init.kz/en",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/init-pkg/jsonparse-ts.git"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./classes": {
+      "import": "./dist/classes/index.js",
+      "require": "./dist/classes/index.cjs",
+      "types": "./dist/classes/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "serve": "http-server -p 8080",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "INIT.KZ"
+  ],
+  "author": "INIT.KZ",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "Sauyrbai Imangali",
+      "url": "https://github.com/Imangali-Sauyrbay"
+    },
+    {
+      "name": "Vadim S.",
+      "url": "https://github.com/init-vadim"
+    }
+  ],
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.1.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "bugs": {
+    "url": "https://github.com/init-pkg/template/issues"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
