@@ -31,6 +31,11 @@
       "types": "./dist/api/index.d.ts",
       "import": "./dist/api/index.js",
       "require": "./dist/api/index.cjs"
+    },
+    "./next": {
+      "types": "./dist/next/index.d.ts",
+      "import": "./dist/next/index.js",
+      "require": "./dist/next/index.cjs"
     }
   },
   "scripts": {
@@ -65,6 +70,8 @@
   "devDependencies": {
     "@types/node": "^22.13.5",
     "@types/react": "^19.1.2",
+    "next": "^15.3.1",
+    "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tsup": "^8.4.0",
@@ -83,6 +90,7 @@
     "url": "https://github.com/init-pkg/template/issues"
   },
   "peerDependencies": {
+    "next": "^15.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }

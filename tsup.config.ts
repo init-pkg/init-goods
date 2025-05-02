@@ -6,6 +6,7 @@ export default defineConfig({
     "src/hooks/index.ts",
     "src/utils/index.ts",
     "src/api/index.ts",
+    "src/next/index.ts",
   ],
   format: ["esm", "cjs"],
   dts: true,
