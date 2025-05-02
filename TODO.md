@@ -1,0 +1,8 @@
+- Write tests
+- Add type utils
+- Write jsdocks to all functions
+- Add fetch realization
+- Add xcrud class
+- Add reusable next middlewares
+- Finish README.md
+- Rewrite peer deps
