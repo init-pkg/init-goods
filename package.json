@@ -40,6 +40,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "format": "prettier --write .",
     "build:watch": "tsup --watch",
     "serve": "http-server -p 8080",
     "prepare": "npm run build",
