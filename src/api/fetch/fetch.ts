@@ -103,4 +103,6 @@ class Fetch {
   }
 }
 
+// const stream: BodyInit = ReadableStream();
+
 export default Fetch;

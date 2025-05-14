@@ -1,3 +1,5 @@
+import { NeoApi } from "../neo-api/neo-api";
+
 export class FetchResponse<T = any> {
   data: T;
   res: Response;
@@ -21,3 +23,5 @@ export class FetchError<T = any> extends Error {
     Object.setPrototypeOf(this, FetchError.prototype);
   }
 }
+
+const a = new NeoApi("a");

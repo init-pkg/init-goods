@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vitest/config";
 
