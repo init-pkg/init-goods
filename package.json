@@ -41,7 +41,10 @@
     "test:coverage": "vitest --coverage"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md",
+    "package.json"
   ],
   "keywords": [
     "INIT.KZ"
