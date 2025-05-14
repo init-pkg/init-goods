@@ -1,4 +1,3 @@
-import { ResolvedMetadata } from "next";
 import { MetaFilter } from "./generate/meta";
 import {
   AppleWebAppMeta,
@@ -16,6 +15,7 @@ import {
   TwitterMetadata,
 } from "./generate/opengraph";
 import { IconsMetadata } from "./generate/icons";
+import { ResolvedMetadata } from "./types/metadata-interface";
 
 export function createMetadataElements(metadata: ResolvedMetadata) {
   return MetaFilter([

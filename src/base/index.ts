@@ -4,3 +4,4 @@ export * from "./classes/array/tree/abstractions";
 export * from "./classes/array/matrix/matrix";
 export * from "./helpers/nonNullable";
 export { createMetadataElements } from "./helpers/meta/generateMetadata";
+export { Metadata } from "./helpers/meta/types/metadata-interface";
