@@ -12,7 +12,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
+    "./base": {
       "types": "./dist/base/index.d.ts",
       "import": "./dist/base/index.js",
       "require": "./dist/base/index.cjs"
@@ -85,9 +85,9 @@
     "url": "https://github.com/init-pkg/init-goods/issues"
   },
   "peerDependencies": {
-    "next": "^15.3.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.0.0",
-    "zod": "^3.24.4"
+    "next": ">=15.0.0",
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0",
+    "zod": ">=3.20.0"
   }
 }

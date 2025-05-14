@@ -1,4 +1,4 @@
-# Template
+# Goods
 
 <p align="center">
  <a href="https://init.kz/en">
@@ -6,7 +6,7 @@
  </a>
 </p>
 
-Template description
+Some useful utils that imroves quality of live when developing in our primary stack
 
 ## Features
 
@@ -15,7 +15,7 @@ Template description
 ## Installation
 
 ```sh
-npm install @init-kz/template
+npm install @init-kz/goods
 ```
 
 ## Usage
