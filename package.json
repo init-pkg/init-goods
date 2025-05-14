@@ -37,6 +37,7 @@
     "prepublishOnly": "npm run build",
     "clean": "rm -rf dist",
     "test": "vitest run",
+    "release": "release-it",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage"
   },
@@ -73,6 +74,9 @@
     "typescript": "^5.7.3",
     "vitest": "^3.0.7",
     "zod": "^3.24.4"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "directories": {
     "test": "tests"
