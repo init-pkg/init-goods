@@ -1,4 +1,4 @@
-import { MetaFilter } from "./generate/meta";
+import { AlternatesMetadata } from "./generate/alternate";
 import {
   AppleWebAppMeta,
   BasicMeta,
@@ -8,16 +8,17 @@ import {
   PinterestMeta,
   VerificationMeta,
 } from "./generate/basic";
-import { AlternatesMetadata } from "./generate/alternate";
+import { IconsMetadata } from "./generate/icons";
+import { MetaFilter } from "./generate/meta";
 import {
   AppLinksMeta,
   OpenGraphMetadata,
   TwitterMetadata,
 } from "./generate/opengraph";
-import { IconsMetadata } from "./generate/icons";
-import { ResolvedMetadata } from "./types/metadata-interface";
+import { resolveMetadata } from "./resolver/resolve-metadata";
+import { Metadata, ResolvedMetadata } from "./types/metadata-interface";
 
-export function createMetadataElements(metadata: ResolvedMetadata) {
+function createMetadataElements(metadata: ResolvedMetadata) {
   return MetaFilter([
     BasicMeta({ metadata }),
     AlternatesMetadata({ alternates: metadata.alternates }),
@@ -33,3 +34,19 @@ export function createMetadataElements(metadata: ResolvedMetadata) {
     IconsMetadata({ icons: metadata.icons }),
   ]);
 }
+
+export function generateMetadata(metadata: Metadata) {
+  const url = new URL(window.location.href);
+  const resolvedMetadata = resolveMetadata(metadata, url);
+  return createMetadataElements(resolvedMetadata);
+}
+
+// export async function getMetadata(metadata: Metadata) {
+//   const selfurl = process.env.NEXT_PUBLIC_SELF_URL;
+//   const headersStore = await headers();
+
+//   // const url = new URL(headersStore.get("host") || selfurl);
+
+//   const resolvedMetadata = resolveMetadata(metadata, url);
+//   return createMetadataElements(resolvedMetadata);
+// }
