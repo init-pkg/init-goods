@@ -11,6 +11,23 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/base/index.cjs",
+      "import": "./dist/base/index.js",
+      "types": "./dist/base/index.d.ts"
+    },
+    "./react": {
+      "require": "./dist/react/index.cjs",
+      "import": "./dist/react/index.js",
+      "types": "./dist/react/index.d.ts"
+    },
+    "./next": {
+      "require": "./dist/next/index.cjs",
+      "import": "./dist/next/index.js",
+      "types": "./dist/next/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "tsup",
     "format": "prettier --write .",
