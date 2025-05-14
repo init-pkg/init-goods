@@ -1,6 +1,6 @@
 {
   "name": "@init-kz/goods",
-  "version": "1.0.8",
+  "version": "0.0.1",
   "description": "Library from init.kz",
   "homepage": "https://init.kz/en",
   "repository": {
@@ -13,19 +13,19 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/base/index.cjs",
+      "types": "./dist/base/index.d.ts",
       "import": "./dist/base/index.js",
-      "types": "./dist/base/index.d.ts"
+      "require": "./dist/base/index.cjs"
     },
     "./react": {
-      "require": "./dist/react/index.cjs",
+      "types": "./dist/react/index.d.ts",
       "import": "./dist/react/index.js",
-      "types": "./dist/react/index.d.ts"
+      "require": "./dist/react/index.cjs"
     },
     "./next": {
-      "require": "./dist/next/index.cjs",
+      "types": "./dist/next/index.d.ts",
       "import": "./dist/next/index.js",
-      "types": "./dist/next/index.d.ts"
+      "require": "./dist/next/index.cjs"
     }
   },
   "scripts": {
@@ -65,6 +65,7 @@
     "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "release-it": "^19.0.2",
     "tsup": "^8.4.0",
     "typescript": "^5.7.3",
     "vitest": "^3.0.7",
