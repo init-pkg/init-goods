@@ -7,4 +7,4 @@ export type MiddlewareContructor = (
   next: NextMiddleware,
   req: NextRequest,
   event: NextFetchEvent
-) => Promise<NextMiddlewareResult>;
+) => Promise<NextMiddlewareResult> | NextMiddlewareResult;
