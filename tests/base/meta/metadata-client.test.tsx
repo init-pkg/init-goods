@@ -72,6 +72,10 @@ describe("Test for metadata", () => {
           content="Opengraph Site Name"
         />
         <meta
+          property="og:locale"
+          content="en_US"
+        />
+        <meta
           property="og:image"
           content="https://example.com/og-image.jpg"
         />
@@ -84,11 +88,7 @@ describe("Test for metadata", () => {
           content="600"
         />
         <meta
-          property="og:type"
-          content="website"
-        />
-        <meta
-          property="og:locale"
+          property="og:locale:alternate"
           content="en_US"
         />
         <meta
@@ -96,8 +96,8 @@ describe("Test for metadata", () => {
           content="fr_FR"
         />
         <meta
-          property="og:locale:alternate"
-          content="en_US"
+          property="og:type"
+          content="website"
         />
       </>
     );
@@ -182,12 +182,12 @@ describe("Test for metadata", () => {
           content="description"
         />
         <link
-          rel="icon"
-          href="/favicon.ico"
-        />
-        <link
           rel="shortcut icon"
           href="/shortcut-icon.png"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
         />
         <link
           rel="apple-touch-icon"
@@ -230,23 +230,97 @@ describe("Test for metadata", () => {
         />
         <link
           rel="alternate"
-          href="/en"
           hrefLang="en"
+          href="/en"
         />
         <link
           rel="alternate"
-          href="/fr"
           hrefLang="fr"
+          href="/fr"
         />
         <link
           rel="alternate"
-          href="/index.html"
           type="text/html"
+          href="/index.html"
         />
         <link
           rel="alternate"
-          href="/index.json"
           type="application/json"
+          href="/index.json"
+        />
+      </>
+    );
+
+    compareJsx(metadata, expectedMetadata);
+  });
+
+  it("Should generate uncommon fields", () => {
+    const metadata = generateMetadata({
+      other: {
+        "created-at": "2021-01-01",
+        "article:modified_time": "2021-01-02",
+      },
+    });
+
+    const expectedMetadata = (
+      <>
+        <meta
+          name="created-at"
+          content="2021-01-01"
+        />
+        <meta
+          name="article:modified_time"
+          content="2021-01-02"
+        />
+      </>
+    );
+
+    compareJsx(metadata, expectedMetadata);
+  });
+
+  it("Should generate canonical url", () => {
+    const metadata = generateMetadata({
+      alternates: {
+        canonical: "https://example.com/canonical",
+      },
+    });
+
+    const expectedMetadata = (
+      <>
+        <link
+          rel="canonical"
+          href="https://example.com/canonical"
+        />
+      </>
+    );
+
+    compareJsx(metadata, expectedMetadata);
+  });
+
+  it("Should generate varification meta", () => {
+    const metadata = generateMetadata({
+      verification: {
+        google: "google-site-verification",
+        yandex: "yandex-site-verification",
+        other: {
+          steam: "steam-site-verification",
+        },
+      },
+    });
+
+    const expectedMetadata = (
+      <>
+        <meta
+          name="google-site-verification"
+          content="google-site-verification"
+        />
+        <meta
+          name="yandex-verification"
+          content="yandex-site-verification"
+        />
+        <meta
+          name="steam"
+          content="steam-site-verification"
         />
       </>
     );

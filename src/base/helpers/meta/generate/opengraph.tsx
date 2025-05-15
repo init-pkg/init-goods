@@ -193,11 +193,14 @@ export function OpenGraphMetadata({
     }
   }
 
-  console.log(openGraph.title);
-
   return MetaFilter([
     Meta({ property: "og:determiner", content: openGraph.determiner }),
-    Meta({ property: "og:title", content: openGraph.title?.absolute }),
+    Meta({
+      property: "og:title",
+      content:
+        openGraph.title?.absolute ||
+        (typeof openGraph.title === "string" ? openGraph.title : null),
+    }),
     Meta({ property: "og:description", content: openGraph.description }),
     Meta({ property: "og:url", content: openGraph.url?.toString() }),
     Meta({ property: "og:site_name", content: openGraph.siteName }),
@@ -255,7 +258,12 @@ export function TwitterMetadata({
     Meta({ name: "twitter:site:id", content: twitter.siteId }),
     Meta({ name: "twitter:creator", content: twitter.creator }),
     Meta({ name: "twitter:creator:id", content: twitter.creatorId }),
-    Meta({ name: "twitter:title", content: twitter.title?.absolute }),
+    Meta({
+      name: "twitter:title",
+      content:
+        twitter.title?.absolute ||
+        (typeof twitter.title === "string" ? twitter.title : null),
+    }),
     Meta({ name: "twitter:description", content: twitter.description }),
     MultiMeta({ namePrefix: "twitter:image", contents: twitter.images }),
     ...(card === "player"

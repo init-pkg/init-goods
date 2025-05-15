@@ -29,6 +29,18 @@ export function AlternatesMetadata({
 
   const { canonical, languages, media, types } = alternates;
 
+  // Helper to convert type aliases to standard MIME types
+  const getMimeType = (type: string): string => {
+    switch (type) {
+      case "html":
+        return "text/html";
+      case "json":
+        return "application/json";
+      default:
+        return type;
+    }
+  };
+
   return MetaFilter([
     canonical
       ? AlternateLink({ rel: "canonical", descriptor: canonical })
@@ -50,7 +62,11 @@ export function AlternatesMetadata({
     types
       ? Object.entries(types).flatMap(([type, descriptors]) =>
           descriptors?.map((descriptor) =>
-            AlternateLink({ rel: "alternate", type, descriptor })
+            AlternateLink({
+              rel: "alternate",
+              type: getMimeType(type),
+              descriptor,
+            })
           )
         )
       : null,

@@ -630,7 +630,36 @@ function resolveVerification(
     return null;
   }
 
-  return verification as ResolvedVerification;
+  const resolved: ResolvedVerification = { other: {} };
+
+  for (const k in verification) {
+    const key = k as keyof typeof verification;
+    const value = verification[key];
+
+    if (key === "other") {
+      if (!verification.other || !resolved.other) continue;
+
+      for (const [key, value] of Object.entries(verification.other)) {
+        if (!Array.isArray(value)) {
+          resolved.other[key] = [value];
+          continue;
+        }
+
+        resolved.other[key] = value;
+      }
+
+      continue;
+    }
+
+    if (value && !Array.isArray(value)) {
+      resolved[key] = [value] as Array<string | number>;
+      continue;
+    }
+
+    resolved[key] = value as Array<string | number>;
+  }
+
+  return resolved;
 }
 
 /**
@@ -703,6 +732,11 @@ function resolveUrl(
   // If it's already a URL object, convert to string
   if (url instanceof URL) {
     return url.toString();
+  }
+
+  // If the URL starts with a slash, treat it as a relative URL but don't resolve against base
+  if (url.startsWith("/")) {
+    return url;
   }
 
   // If we have a base URL and the URL is relative, resolve against base
