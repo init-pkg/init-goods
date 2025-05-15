@@ -34,11 +34,10 @@ export function useDetailedEffect(
 ) {
   const isFirstRender = useRef(true);
 
-  const {
-    stringifyDeps,
-    skipFirstRender = false,
-    layoutEffect = false,
-  } = useMemo(() => Object.freeze(options || {}), []);
+  const { stringifyDeps, skipFirstRender = false } = useMemo(
+    () => Object.freeze(options || {}),
+    []
+  );
 
   const processedDeps = useMemo(() => {
     if (stringifyDeps) {
@@ -47,21 +46,11 @@ export function useDetailedEffect(
     return deps;
   }, [...deps, stringifyDeps]);
 
-  if (layoutEffect) {
-    useLayoutEffect(() => {
-      if (isFirstRender.current && skipFirstRender) {
-        isFirstRender.current = false;
-        return;
-      }
-      effect();
-    }, [...processedDeps]);
-  } else {
-    useEffect(() => {
-      if (isFirstRender.current && skipFirstRender) {
-        isFirstRender.current = false;
-        return;
-      }
-      effect();
-    }, [...processedDeps]);
-  }
+  useEffect(() => {
+    if (isFirstRender.current && skipFirstRender) {
+      isFirstRender.current = false;
+      return;
+    }
+    effect();
+  }, [...processedDeps]);
 }
