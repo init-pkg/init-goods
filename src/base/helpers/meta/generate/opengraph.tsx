@@ -193,6 +193,8 @@ export function OpenGraphMetadata({
     }
   }
 
+  console.log(openGraph.title);
+
   return MetaFilter([
     Meta({ property: "og:determiner", content: openGraph.determiner }),
     Meta({ property: "og:title", content: openGraph.title?.absolute }),

@@ -38,6 +38,7 @@ function createMetadataElements(metadata: ResolvedMetadata) {
 export function generateMetadata(metadata: Metadata) {
   const url = new URL(window.location.href);
   const resolvedMetadata = resolveMetadata(metadata, url);
+
   return createMetadataElements(resolvedMetadata);
 }
 
