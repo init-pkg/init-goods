@@ -18,10 +18,6 @@ export interface DetailedEffectOptions {
    * stringifies all object deps, that prevent unnecessary rerenders
    */
   stringifyDeps?: boolean;
-  /**
-   * changes inner `useEffect` to `useLayoutEffect`
-   */
-  layoutEffect?: boolean;
 }
 /**
  * @function `useDeatiledEffect` same as useEffect with extra options
