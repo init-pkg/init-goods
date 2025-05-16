@@ -21,7 +21,7 @@ export function stackMiddlewares(
 }
 
 /**
- * constructs new middleware
+ * Function, that constructs new middleware
  * @param constructor - callback, that contains middleware logic
  * @returns middleware as `MiddlewareFactory`
  */

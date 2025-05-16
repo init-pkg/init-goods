@@ -1,5 +1,11 @@
 import { middleware } from "../middlewares";
 
+/**
+ * - Middleware to set the request URL and pathname in the headers.
+ * - This middleware sets the `x-url` and `x-pathname` headers in the request
+ * and response objects.
+ * - It uses the `next` function to get the response and then sets the headers
+ */
 export const setUrlMiddleware = middleware(async (next, req, event) => {
   const res = await next(req, event);
 
