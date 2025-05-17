@@ -8,33 +8,51 @@
 
 Some useful utils that imroves quality of live when developing in our primary stack
 
-## Features
-
-- **Template feature**: Template feature description.
-
 ## Installation
 
 ```sh
 npm install @init-kz/goods
 ```
 
-## Usage
-
-```ts
-import { Template } from "@init-kz/template";
-// Template usage
-
-const template = new Template();
-template.templateFn();
-```
-
 ## API
 
-### `templateFn(): TemplateRes`
+### `useDeatiledEffect()`
 
-Template functions description
+useEffect with additional options for different cases
 
-Optional
+```js
+useDetailedEffect(
+  () => {
+    // Your effect here
+  },
+  [deps],
+  { skipFirstRender: true, stringifyDeps: true }
+);
+```
+
+##### Options
+
+- `skipFirstRender` - skips effect call on first render of component
+- `stringifyDeps` - converts all objects deps to strings
+
+### `useClickOutside()`
+
+Applies globalEventListener with cleanup, that triggers event when click occures outside a ref
+
+```js
+useClickOutside(ref, (event) => {
+  console.log("Clicked outside ref");
+});
+```
+
+##### Options
+
+- `ref` - ref of element that will be a safe zone
+- `event` - click event instance
+
+## INFO
+
+This package in active phase of development, if you encounter an issue visit [github issues](https://github.com/init-pkg/init-goods/issues)
 
 ### Contributing
 
