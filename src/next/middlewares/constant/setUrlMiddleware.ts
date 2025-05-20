@@ -1,5 +1,5 @@
 import { middleware } from "../middlewares";
-
+import { NextResponse } from "next/server";
 /**
  * - Middleware to set the request URL and pathname in the headers.
  * - This middleware sets the `x-url` and `x-pathname` headers in the request

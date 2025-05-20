@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from "node:url";
+import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -9,10 +9,5 @@ export default defineConfig({
       reporter: ["text", "json", "html"],
     },
   },
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-      "@tests": fileURLToPath(new URL("./tests", import.meta.url)),
-    },
-  },
+  plugins: [tsconfigPaths()],
 });

@@ -12,6 +12,7 @@ export type MiddlewareFactory = (middleware: NextMiddleware) => NextMiddleware;
  * @param req - request object
  * @param event - fetch event
  */
+
 export type MiddlewareContructor = (
   next: NextMiddleware,
   req: NextRequest,
