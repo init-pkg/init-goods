@@ -88,11 +88,11 @@ export class Tree<T extends object> extends Array<T> {
       const children = option[this.childrenKey] as T[];
 
       if (children && children.length > 0) {
-        for (const _ of children) {
-          const found = this.deepSearch.call(children, field, value);
-          if (found) {
-            return new Branch(found.object, this.childrenKey);
-          }
+        // Create a new Tree instance for children and search recursively
+        const childrenTree = new Tree(children, this.childrenKey);
+        const found = childrenTree.deepSearch(field, value);
+        if (found) {
+          return found;
         }
       }
     }
