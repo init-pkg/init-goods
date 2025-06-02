@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { Branch } from "../../../../../src/base/classes/array/tree/branch";
+import { Branch } from "@/base/classes/array/tree/branch";
 
 // Test data interfaces
 interface TreeNode {

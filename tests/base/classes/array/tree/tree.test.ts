@@ -1,20 +1,11 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { Tree } from "../../../../../src/base/classes/array/tree/tree";
-import { FlattenedObject } from "../../../../../src/base/classes/array/tree/abstractions";
+import { Tree } from "@/base/classes/array/tree/tree";
 
 // Test data interfaces
 interface TreeNode {
   id: number;
   name: string;
   children: TreeNode[];
-}
-
-interface FlatNode {
-  id: number;
-  name: string;
-  children: FlatNode[];
-  parent: number | null;
-  depth: number;
 }
 
 describe("Tree Class", () => {
