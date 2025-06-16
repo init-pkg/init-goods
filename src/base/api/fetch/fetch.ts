@@ -26,6 +26,9 @@ export class FetchResponse<T = unknown> {
   }
 }
 
+/**
+ * @deprecated `Fetch` has been moved to `@init-kz/entities` library.
+ */
 class Fetch {
   private baseUrl: string;
   private requestInterceptor?: RequestInterceptor<RequestInit>;
