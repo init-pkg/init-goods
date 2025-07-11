@@ -172,20 +172,21 @@ export class Tree<T extends object> extends Array<T> {
     return Array.from(this);
   }
 
-  static transformToTree<T extends FlattenedObject>(
+  static transformToTree<T extends object, R extends T = T & { children: T[] }>(
     array: T[],
-    uniqueKey: Exclude<keyof T, "parent" | "depth">,
-    childrenKey: Exclude<keyof T, "parent" | "depth">
-  ): Tree<Omit<T, "parent" | "depth">> {
-    const parents = array.filter((item) => item.parent === null);
+    parentKey: keyof T,
+    uniqueKey: keyof T,
+    childrenKey: keyof R = "children" as keyof R
+  ): Tree<R> {
+    const parents = array.filter((item) => item[parentKey] === null);
 
     parents.forEach((parent) => {
       const children = array.filter(
-        (item) => item.parent === parent[uniqueKey]
+        (item) => item[parentKey] === parent[uniqueKey]
       );
       parent[childrenKey as keyof T] = children as T[keyof T];
     });
 
-    return new this<Omit<T, "parent" | "depth">>(parents, childrenKey);
+    return new this<R>(parents as R[], childrenKey as keyof T);
   }
 }
