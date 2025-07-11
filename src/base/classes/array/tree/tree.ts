@@ -187,6 +187,6 @@ export class Tree<T extends object> extends Array<T> {
       parent[childrenKey as keyof T] = children as T[keyof T];
     });
 
-    return new this<R>(parents as R[], childrenKey as keyof T);
+    return new this(parents as R[], childrenKey as keyof T);
   }
 }
