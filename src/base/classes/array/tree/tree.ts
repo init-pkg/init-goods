@@ -178,15 +178,25 @@ export class Tree<T extends object> extends Array<T> {
     uniqueKey: keyof T,
     childrenKey: keyof R = "children" as keyof R
   ): Tree<R> {
-    const parents = array.filter((item) => item[parentKey] === null);
+    // Helper function to recursively build the tree
+    const buildTree = (parentValue: unknown): R[] => {
+      const children = array.filter((item) => item[parentKey] === parentValue);
 
-    parents.forEach((parent) => {
-      const children = array.filter(
-        (item) => item[parentKey] === parent[uniqueKey]
-      );
-      parent[childrenKey as keyof T] = children as T[keyof T];
-    });
+      return children.map((child) => {
+        // Create a new object with the children property
+        const result = { ...child } as R;
 
-    return new this(parents as R[], childrenKey as keyof T);
+        // Recursively find children for this item
+        const childNodes = buildTree(child[uniqueKey]);
+        result[childrenKey] = childNodes as R[keyof R];
+
+        return result;
+      });
+    };
+
+    // Find root items (items with null/undefined parent)
+    const rootItems = buildTree(null);
+
+    return new Tree(rootItems, childrenKey as keyof R);
   }
 }

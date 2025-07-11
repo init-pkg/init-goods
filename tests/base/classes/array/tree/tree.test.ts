@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { Tree } from "@/base/classes/array/tree/tree";
+import { strict } from "assert";
 
 // Test data interfaces
 interface TreeNode {
@@ -351,5 +352,61 @@ describe("Tree Class", () => {
       expect(simpleTree.getParents("id", undefined)).toEqual([]);
       expect(simpleTree.deepSearch("id", null)).toBeUndefined();
     });
+  });
+
+  it("should handle custom children key", () => {
+    const customChildrenKeyTree = new Tree(
+      [
+        { id: 1, name: "Custom Root", customChildren: [] },
+        {
+          id: 2,
+          name: "Custom Child",
+          customChildren: [
+            { id: 3, name: "Custom Grandchild", customChildren: [] },
+          ],
+        },
+      ],
+      "customChildren"
+    );
+
+    expect(customChildrenKeyTree.flatLength).toBe(3);
+    expect(customChildrenKeyTree.getParents("id", 3)).toEqual([
+      {
+        id: 2,
+        name: "Custom Child",
+        customChildren: [
+          { id: 3, name: "Custom Grandchild", customChildren: [] },
+        ],
+      },
+    ]);
+    expect(customChildrenKeyTree.getChildren("id", 1)).toHaveLength(0);
+    expect(customChildrenKeyTree.deepSearch("id", 3)?.object.name).toBe(
+      "Custom Grandchild"
+    );
+  });
+
+  it("should handle custom parent key key", () => {
+    const customArray = [
+      { id: 1, name: "Custom Root", parentId: null, children: [] },
+      { id: 2, name: "Custom Child", parentId: 1, children: [] },
+      { id: 3, name: "Custom Grandchild", parentId: 2, children: [] },
+    ];
+
+    const customTree = Tree.transformToTree(
+      customArray,
+      "parentId",
+      "id",
+      "children"
+    );
+
+    console.log(JSON.stringify(customTree.toArray()));
+
+    expect(customTree.flatLength).toBe(3);
+    expect(customTree.toArray().length).toBe(1);
+    expect(customTree.getParents("id", 2)).toBeDefined();
+    expect(customTree.getChildren("id", 1)).toHaveLength(1);
+    expect(customTree.deepSearch("id", 3)?.object.name).toBe(
+      "Custom Grandchild"
+    );
   });
 });
