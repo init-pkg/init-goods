@@ -8,4 +8,5 @@ export { Metadata } from "./helpers/meta/types/metadata-interface";
 export { escapeRegExp } from "./helpers/escapeReg";
 export { generateHSLColors } from "./helpers/generateHsl";
 export * from "./api";
-export { transformObjectQuery } from "./helpers/transformObjectQuery";
+export * from "./helpers/params/transformQuery";
+export * from "./helpers/params/paramsTypes";
