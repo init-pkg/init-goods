@@ -1,6 +1,22 @@
 import { Ref, RefObject } from "react";
 
 /**
+ * helper function that puts given value into ref
+ * @param ref - can be object, callback or forwarded ref
+ */
+export function assignToRef<T>(ref: Ref<T>, value: T) {
+  if (!ref) return;
+  switch (typeof ref) {
+    case "object":
+      ref.current = value;
+      break;
+    case "function":
+      ref(value);
+      break;
+  }
+}
+
+/**
  *
  * Merges multiple refs in one jsx node
  * @param refs - refs that you want to merge
@@ -8,20 +24,12 @@ import { Ref, RefObject } from "react";
  * <div ref={refs(ref1, ref2)}></div>
  * ```
  */
-export function refs<T extends Element | null>(
+export function refs<T extends object | null>(
   ...refs: Ref<T>[]
 ): (node: T) => void {
   return (node) => {
     refs.forEach((ref) => {
-      if (!ref) return;
-      switch (typeof ref) {
-        case "object":
-          ref.current = node;
-          break;
-        case "function":
-          ref(node);
-          break;
-      }
+      assignToRef(ref, node);
     });
   };
 }
