@@ -1,19 +1,25 @@
 import { Ref, RefObject } from "react";
 
 /**
- * helper function that puts given value into ref
- * @param ref - can be object, callback or forwarded ref
+ * helper function that puts given value into all provided refs
+ * @param refs - refs that you want to assign the value to
+ * @info refs can be object, callback or forwarded
  */
-export function assignToRef<T>(ref: Ref<T>, value: T) {
-  if (!ref) return;
-  switch (typeof ref) {
-    case "object":
-      ref.current = value;
-      break;
-    case "function":
-      ref(value);
-      break;
-  }
+export function assignToRef<T>(
+  value: T,
+  ...refs: Array<Ref<T> | undefined>
+): void {
+  refs.forEach((ref) => {
+    if (!ref) return;
+    switch (typeof ref) {
+      case "object":
+        ref.current = value;
+        break;
+      case "function":
+        ref(value);
+        break;
+    }
+  });
 }
 
 /**
@@ -28,9 +34,7 @@ export function refs<T extends object | null>(
   ...refs: Ref<T>[]
 ): (node: T) => void {
   return (node) => {
-    refs.forEach((ref) => {
-      assignToRef(ref, node);
-    });
+    assignToRef(node, ...refs);
   };
 }
 
