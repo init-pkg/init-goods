@@ -1,4 +1,4 @@
-import { Ref, RefObject } from "react";
+import { Ref, RefCallback, RefObject, useRef } from "react";
 
 /**
  * helper function that puts given value into all provided refs
@@ -30,7 +30,7 @@ export function assignToRef<T>(
  * <div ref={refs(ref1, ref2)}></div>
  * ```
  */
-export function refs<T extends object | null>(
+export function refs<T extends object | null = Element>(
   ...refs: Ref<T>[]
 ): (node: T) => void {
   return (node) => {
