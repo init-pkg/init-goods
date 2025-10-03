@@ -14,7 +14,10 @@ export async function getSearchParams<
 >(): Promise<ParamsObject<T>> {
   const headersStore = await headers();
   const url = headersStore.get("x-url");
-  if (!url) throw new Error("x-url header is not set. (use setUrlMiddleware)");
+  // if (!url) throw new Error("x-url header is not set. (use setUrlMiddleware)");
+
+  if (!url) return { toParams: () => new URLSearchParams() } as ParamsObject<T>;
+
   const parsedUrl = new URL(url);
   const searchParams = Object.fromEntries(parsedUrl.searchParams.entries());
 
